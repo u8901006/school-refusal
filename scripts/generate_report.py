@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate GLP-1 daily report HTML using Zhipu AI (coding plan GLM-5.1).
+Generate School Refusal daily report HTML using Zhipu AI (coding plan GLM-5.1).
 Reads papers JSON, analyzes with AI, generates styled HTML page.
 """
 
@@ -19,7 +19,7 @@ API_BASE = os.environ.get(
 MODEL_NAME = os.environ.get("ZHIPU_MODEL", "glm-5.1")
 
 SYSTEM_PROMPT = (
-    "你是 GLP-1 受體促效劑與代謝醫學領域的資深研究員與科學傳播者。你的任務是：\n"
+    "你是兒童青少年精神醫學領域的資深研究員，專精於「拒學/懼學（school refusal）」研究。你的任務是：\n"
     "1. 從提供的醫學文獻中，篩選出最具臨床意義與研究價值的論文\n"
     "2. 對每篇論文進行繁體中文摘要、分類、PICO 分析\n"
     "3. 評估其臨床實用性（高/中/低）\n"
@@ -50,7 +50,7 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
         papers_data.get("papers", []), ensure_ascii=False, indent=2
     )
 
-    prompt = f"""以下是 {date_str} 從 PubMed 抓取的最新 GLP-1 受體促效劑相關文獻（共 {paper_count} 篇）。
+    prompt = f"""以下是 {date_str} 從 PubMed 抓取的最新拒學/懼學（School Refusal）相關文獻（共 {paper_count} 篇）。
 
 請進行以下分析，並以 JSON 格式回傳（不要用 markdown code block）：
 
@@ -91,8 +91,8 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
   ],
   "keywords": ["關鍵字1", "關鍵字2"],
   "topic_distribution": {{
-    "肥胖治療": 3,
-    "第二型糖尿病": 2
+    "拒學行為": 3,
+    "焦慮症": 2
   }}
 }}
 
@@ -100,7 +100,7 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
 {papers_text}
 
 請篩選出最重要的 TOP 5-8 篇論文放入 top_picks（按重要性排序），其餘放入 all_papers。
-每篇 paper 的 tags 請從以下選擇：肥胖治療、第二型糖尿病、心血管保護、慢性腎病、MASLD/MASH、睡眠呼吸中止症、慢性疼痛、纖維肌痛、耳鳴、暈眩、腦霧、憂鬱症、焦慮症、認知功能、成癮行為、酒精使用、暴食症、抗老醫學、食慾調控、體重管理、代謝症候群、藥物比較、真實世界數據、臨床試驗、系統性回顧。
+每篇 paper 的 tags 請從以下選擇：拒學行為、懼學、上學回避、分離焦慮、社交焦慮、憂鬱症、身體化症狀、自閉症、ADHD、創傷、霸凌、家庭因素、學校因素、同儕關係、認知行為治療、暴露治療、家庭治療、學校介入、返校計畫、系統性回顧、兒少精神醫學、心理治療、精神藥理學、睡眠問題、自傷/自殺。
 記住：回傳純 JSON，不要用 ```json``` 包裹。"""
 
     headers = {
@@ -282,46 +282,43 @@ def generate_html(analysis: dict) -> str:
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>GLP-1 Brain &middot; GLP-1 \u6587\u737b\u65e5\u5831 &middot; {date_display}</title>
-<meta name="description" content="{date_display} GLP-1 \u53d7\u9ad4\u4fc3\u6548\u5282\u6587\u737b\u65e5\u5831\uff0c\u7531 AI \u81ea\u52d5\u5f59\u6574 PubMed \u6700\u65b0\u8ad6\u6587"/>
+<title>School Refusal Brain &middot; \u62d2\u5b78/\u61fc\u5b78\u6587\u737b\u65e5\u5831 &middot; {date_display}</title>
+<meta name="description" content="{date_display} \u62d2\u5b78/\u61fc\u5b78\uff08School Refusal\uff09\u6587\u737b\u65e5\u5831\uff0c\u7531 AI \u81ea\u52d5\u5f59\u6574 PubMed \u6700\u65b0\u8ad6\u6587"/>
 <style>
-  :root {{ --bg: #070b14; --surface: #0d1525; --line: #1a2744; --text: #E8EDF5; --muted: #8899B4; --accent: #00D4AA; --accent-soft: rgba(0,212,170,0.12); --card-bg: rgba(13,21,37,0.92); --glow: rgba(0,212,170,0.06); }}
+  :root {{ --bg: #070b14; --surface: #0d1525; --line: #1a2744; --text: #E8EDF5; --muted: #8899B4; --accent: #7C6BFF; --accent-soft: rgba(124,107,255,0.12); --card-bg: rgba(13,21,37,0.92); }}
   *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{ background: var(--bg); color: var(--text); font-family: -apple-system, "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }}
-  body::before {{ content: ''; position: fixed; bottom: -200px; right: -200px; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(0,212,170,0.07) 0%, transparent 70%); pointer-events: none; z-index: 0; }}
+  body::before {{ content: ''; position: fixed; bottom: -200px; right: -200px; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(124,107,255,0.07) 0%, transparent 70%); pointer-events: none; z-index: 0; }}
   body::after {{ content: ''; position: fixed; top: -200px; left: -200px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(66,165,245,0.05) 0%, transparent 70%); pointer-events: none; z-index: 0; }}
   .container {{ position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }}
   header {{ display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }}
-  .logo {{ width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #00D4AA, #00A388); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(0,212,170,0.3); }}
+  .logo {{ width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #7C6BFF, #5B4ACF); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(124,107,255,0.3); }}
   .header-text h1 {{ font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }}
   .header-meta {{ display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }}
   .badge {{ display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }}
-  .badge-date {{ background: rgba(0,212,170,0.15); border: 1px solid rgba(0,212,170,0.3); color: #00D4AA; }}
+  .badge-date {{ background: rgba(124,107,255,0.15); border: 1px solid rgba(124,107,255,0.3); color: #7C6BFF; }}
   .badge-count {{ background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #8899B4; }}
   .badge-source {{ background: transparent; color: #546E7A; font-size: 11px; padding: 0 4px; }}
-  .summary-card {{ background: rgba(0,212,170,0.05); border: 1px solid rgba(0,212,170,0.15); border-radius: 20px; padding: 28px 32px; margin-bottom: 32px; animation: fadeUp 0.5s ease 0.1s both; }}
-  .summary-card h2 {{ font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: #00D4AA; margin-bottom: 16px; }}
-  .summary-list {{ list-style: none; display: flex; flex-direction: column; gap: 10px; }}
-  .summary-list li {{ font-size: 14px; line-height: 1.7; color: #C8D8E8; padding-left: 18px; position: relative; }}
-  .summary-list li::before {{ content: '\u203a'; position: absolute; left: 0; color: #00D4AA; font-weight: 700; font-size: 16px; line-height: 1.4; }}
+  .summary-card {{ background: rgba(124,107,255,0.05); border: 1px solid rgba(124,107,255,0.15); border-radius: 20px; padding: 28px 32px; margin-bottom: 32px; animation: fadeUp 0.5s ease 0.1s both; }}
+  .summary-card h2 {{ font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: #7C6BFF; margin-bottom: 16px; }}
   .summary-text {{ font-size: 15px; line-height: 1.8; color: #C8D8E8; }}
   .section {{ margin-bottom: 36px; animation: fadeUp 0.5s ease both; }}
   .section-title {{ display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.07); }}
-  .section-icon {{ width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: rgba(0,212,170,0.12); }}
+  .section-icon {{ width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: rgba(124,107,255,0.12); }}
   .news-card {{ background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 22px 26px; margin-bottom: 12px; transition: background 0.2s, border-color 0.2s, transform 0.2s; }}
-  .news-card:hover {{ background: rgba(0,212,170,0.05); border-color: rgba(0,212,170,0.2); transform: translateY(-2px); }}
-  .news-card.featured {{ border-left: 3px solid #00D4AA; }}
-  .news-card.featured:hover {{ border-color: #00D4AA; }}
+  .news-card:hover {{ background: rgba(124,107,255,0.05); border-color: rgba(124,107,255,0.2); transform: translateY(-2px); }}
+  .news-card.featured {{ border-left: 3px solid #7C6BFF; }}
+  .news-card.featured:hover {{ border-color: #7C6BFF; }}
   .card-header {{ display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }}
-  .rank-badge {{ background: linear-gradient(135deg, #00D4AA, #00A388); color: #fff; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }}
+  .rank-badge {{ background: linear-gradient(135deg, #7C6BFF, #5B4ACF); color: #fff; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }}
   .emoji-icon {{ font-size: 18px; }}
   .card-header-row {{ display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }}
   .emoji-sm {{ font-size: 14px; }}
   .news-card h3 {{ font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 8px; line-height: 1.5; }}
-  .journal-source {{ font-size: 12px; color: #00D4AA; margin-bottom: 8px; opacity: 0.8; }}
+  .journal-source {{ font-size: 12px; color: #7C6BFF; margin-bottom: 8px; opacity: 0.8; }}
   .news-card p {{ font-size: 13.5px; line-height: 1.75; color: #8899B4; }}
   .card-footer {{ margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }}
-  .tag {{ padding: 2px 9px; background: rgba(0,212,170,0.1); border-radius: 999px; font-size: 11px; color: #00D4AA; }}
+  .tag {{ padding: 2px 9px; background: rgba(124,107,255,0.1); border-radius: 999px; font-size: 11px; color: #7C6BFF; }}
   .news-card a {{ font-size: 12px; color: #42A5F5; text-decoration: none; opacity: 0.7; margin-left: auto; }}
   .news-card a:hover {{ opacity: 1; }}
   .utility-high {{ color: #4CAF50; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(76,175,80,0.1); border-radius: 4px; }}
@@ -330,28 +327,28 @@ def generate_html(analysis: dict) -> str:
   .utility-sm {{ font-size: 10px; }}
   .pico-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 14px; border: 1px solid rgba(255,255,255,0.05); }}
   .pico-item {{ display: flex; gap: 8px; align-items: baseline; }}
-  .pico-label {{ font-size: 10px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #00D4AA, #00A388); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }}
+  .pico-label {{ font-size: 10px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #7C6BFF, #5B4ACF); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }}
   .pico-text {{ font-size: 12px; color: #8899B4; line-height: 1.4; }}
   .keywords-section {{ margin-bottom: 36px; }}
   .keywords {{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }}
-  .keyword {{ padding: 5px 14px; background: rgba(0,212,170,0.07); border: 1px solid rgba(0,212,170,0.18); border-radius: 20px; font-size: 12px; color: #00D4AA; cursor: default; transition: background 0.2s; }}
-  .keyword:hover {{ background: rgba(0,212,170,0.15); }}
+  .keyword {{ padding: 5px 14px; background: rgba(124,107,255,0.07); border: 1px solid rgba(124,107,255,0.18); border-radius: 20px; font-size: 12px; color: #7C6BFF; cursor: default; transition: background 0.2s; }}
+  .keyword:hover {{ background: rgba(124,107,255,0.15); }}
   .topic-section {{ margin-bottom: 36px; }}
   .topic-row {{ display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }}
   .topic-name {{ font-size: 13px; color: #8899B4; width: 100px; flex-shrink: 0; text-align: right; }}
   .topic-bar-bg {{ flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }}
-  .topic-bar {{ height: 100%; background: linear-gradient(90deg, #00D4AA, #42A5F5); border-radius: 4px; transition: width 0.6s ease; }}
-  .topic-count {{ font-size: 12px; color: #00D4AA; width: 24px; }}
+  .topic-bar {{ height: 100%; background: linear-gradient(90deg, #7C6BFF, #42A5F5); border-radius: 4px; transition: width 0.6s ease; }}
+  .topic-count {{ font-size: 12px; color: #7C6BFF; width: 24px; }}
   .clinic-banner {{ margin-top: 48px; animation: fadeUp 0.5s ease 0.4s both; }}
-  .clinic-link {{ display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: rgba(0,212,170,0.05); border: 1px solid rgba(0,212,170,0.15); border-radius: 16px; text-decoration: none; color: var(--text); transition: all 0.2s; }}
-  .clinic-link:hover {{ border-color: #00D4AA; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,170,0.1); }}
+  .clinic-link {{ display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: rgba(124,107,255,0.05); border: 1px solid rgba(124,107,255,0.15); border-radius: 16px; text-decoration: none; color: var(--text); transition: all 0.2s; }}
+  .clinic-link:hover {{ border-color: #7C6BFF; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,107,255,0.1); }}
   .clinic-icon {{ font-size: 28px; flex-shrink: 0; }}
   .clinic-name {{ font-size: 15px; font-weight: 700; color: #fff; flex: 1; }}
   .clinic-desc {{ font-size: 12px; color: #8899B4; margin-top: 2px; }}
-  .clinic-arrow {{ font-size: 18px; color: #00D4AA; font-weight: 700; }}
+  .clinic-arrow {{ font-size: 18px; color: #7C6BFF; font-weight: 700; }}
   footer {{ margin-top: 32px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 11.5px; color: #37474F; display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }}
   footer a {{ color: #546E7A; text-decoration: none; }}
-  footer a:hover {{ color: #00D4AA; }}
+  footer a:hover {{ color: #7C6BFF; }}
   @keyframes fadeDown {{ from {{ opacity: 0; transform: translateY(-16px); }} to {{ opacity: 1; transform: translateY(0); }} }}
   @keyframes fadeUp {{ from {{ opacity: 0; transform: translateY(16px); }} to {{ opacity: 1; transform: translateY(0); }} }}
   @media (max-width: 600px) {{ .container {{ padding: 36px 18px 60px; }} .summary-card, .news-card {{ padding: 20px 18px; }} .pico-grid {{ grid-template-columns: 1fr; }} footer {{ flex-direction: column; gap: 6px; text-align: center; }} .topic-name {{ width: 70px; font-size: 11px; }} }}
@@ -360,9 +357,9 @@ def generate_html(analysis: dict) -> str:
 <body>
 <div class="container">
   <header>
-    <div class="logo">\U0001f9ea</div>
+    <div class="logo">\U0001f3eb</div>
     <div class="header-text">
-      <h1>GLP-1 Brain &middot; GLP-1 \u6587\u737b\u65e5\u5831</h1>
+      <h1>School Refusal Brain &middot; \u62d2\u5b78/\u61fc\u5b78\u6587\u737b\u65e5\u5831</h1>
       <div class="header-meta">
         <span class="badge badge-date">\U0001f4c5 {date_display}</span>
         <span class="badge badge-count">\U0001f4ca {total_count} \u7bc7\u6587\u737b</span>
@@ -407,7 +404,9 @@ def generate_html(analysis: dict) -> str:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate GLP-1 daily report HTML")
+    parser = argparse.ArgumentParser(
+        description="Generate School Refusal daily report HTML"
+    )
     parser.add_argument("--input", required=True, help="Input papers JSON file")
     parser.add_argument("--output", required=True, help="Output HTML file")
     parser.add_argument(
@@ -428,7 +427,7 @@ def main():
         tz_taipei = timezone(timedelta(hours=8))
         analysis = {
             "date": datetime.now(tz_taipei).strftime("%Y-%m-%d"),
-            "market_summary": "\u4eca\u65e5 PubMed \u66ab\u7121\u65b0\u7684 GLP-1 \u76f8\u95dc\u6587\u737b\u66f4\u65b0\u3002\u8acb\u660e\u5929\u518d\u67e5\u770b\u3002",
+            "market_summary": "\u4eca\u65e5 PubMed \u66ab\u7121\u65b0\u7684\u62d2\u5b78/\u61fc\u5b78\u76f8\u95dc\u6587\u737b\u66f4\u65b0\u3002\u8acb\u660e\u5929\u518d\u67e5\u770b\u3002",
             "top_picks": [],
             "all_papers": [],
             "keywords": [],
