@@ -7,6 +7,7 @@ Keywords from school_refusal_journals_keywords_pubmed_templates.md.
 
 import json
 import sys
+import time
 import argparse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
@@ -213,6 +214,8 @@ def main():
             f"  Found {len(pmids)} new PMIDs (total unique: {len(all_pmids)})",
             file=sys.stderr,
         )
+        if i < len(queries) - 1:
+            time.sleep(1)
 
     pmid_list = list(all_pmids)[: args.max_papers]
     print(f"[INFO] Fetching details for {len(pmid_list)} papers...", file=sys.stderr)
