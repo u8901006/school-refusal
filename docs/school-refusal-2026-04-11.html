@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>School Refusal Brain &middot; 拒學/懼學文獻日報 &middot; 2026年4月11日</title>
+<meta name="description" content="2026年4月11日 拒學/懼學（School Refusal）文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #070b14; --surface: #0d1525; --line: #1a2744; --text: #E8EDF5; --muted: #8899B4; --accent: #7C6BFF; --accent-soft: rgba(124,107,255,0.12); --card-bg: rgba(13,21,37,0.92); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; bottom: -200px; right: -200px; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(124,107,255,0.07) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+  body::after { content: ''; position: fixed; top: -200px; left: -200px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(66,165,245,0.05) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, #7C6BFF, #5B4ACF); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(124,107,255,0.3); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: rgba(124,107,255,0.15); border: 1px solid rgba(124,107,255,0.3); color: #7C6BFF; }
+  .badge-count { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #8899B4; }
+  .badge-source { background: transparent; color: #546E7A; font-size: 11px; padding: 0 4px; }
+  .summary-card { background: rgba(124,107,255,0.05); border: 1px solid rgba(124,107,255,0.15); border-radius: 20px; padding: 28px 32px; margin-bottom: 32px; animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: #7C6BFF; margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: #C8D8E8; }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: rgba(124,107,255,0.12); }
+  .news-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 22px 26px; margin-bottom: 12px; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { background: rgba(124,107,255,0.05); border-color: rgba(124,107,255,0.2); transform: translateY(-2px); }
+  .news-card.featured { border-left: 3px solid #7C6BFF; }
+  .news-card.featured:hover { border-color: #7C6BFF; }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: linear-gradient(135deg, #7C6BFF, #5B4ACF); color: #fff; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: #7C6BFF; margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: #8899B4; }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: rgba(124,107,255,0.1); border-radius: 999px; font-size: 11px; color: #7C6BFF; }
+  .news-card a { font-size: 12px; color: #42A5F5; text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #4CAF50; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(76,175,80,0.1); border-radius: 4px; }
+  .utility-mid { color: #FFC107; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(255,193,7,0.1); border-radius: 4px; }
+  .utility-low { color: #8899B4; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(136,153,180,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 14px; border: 1px solid rgba(255,255,255,0.05); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #7C6BFF, #5B4ACF); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: #8899B4; line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: rgba(124,107,255,0.07); border: 1px solid rgba(124,107,255,0.18); border-radius: 20px; font-size: 12px; color: #7C6BFF; cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(124,107,255,0.15); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: #8899B4; width: 100px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, #7C6BFF, #42A5F5); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: #7C6BFF; width: 24px; }
+  .clinic-banner { margin-top: 48px; animation: fadeUp 0.5s ease 0.4s both; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: rgba(124,107,255,0.05); border: 1px solid rgba(124,107,255,0.15); border-radius: 16px; text-decoration: none; color: var(--text); transition: all 0.2s; }
+  .clinic-link:hover { border-color: #7C6BFF; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,107,255,0.1); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: #fff; flex: 1; }
+  .clinic-desc { font-size: 12px; color: #8899B4; margin-top: 2px; }
+  .clinic-arrow { font-size: 18px; color: #7C6BFF; font-weight: 700; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 11.5px; color: #37474F; display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: #546E7A; text-decoration: none; }
+  footer a:hover { color: #7C6BFF; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 70px; font-size: 11px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🏫</div>
+    <div class="header-text">
+      <h1>School Refusal Brain &middot; 拒學/懼學文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年4月11日</span>
+        <span class="badge badge-count">📊 0 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + Zhipu AI</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日文獻趨勢</h2>
+    <p class="summary-text">今日 PubMed 暫無新的拒學/懼學相關文獻更新。請明天再查看。</p>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="clinic-banner">
+    <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+      <span class="clinic-icon">🏥</span>
+      <div>
+        <div class="clinic-name">李政洋身心診所首頁</div>
+        <div class="clinic-desc">www.leepsyclinic.com</div>
+      </div>
+      <span class="clinic-arrow">→</span>
+    </a>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed &middot; 分析模型：glm-5.1</span>
+    <span><a href="https://github.com/u8901006/school-refusal">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>

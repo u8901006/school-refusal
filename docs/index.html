@@ -3,33 +3,43 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>GLP-1 Brain · GLP-1 文獻日報</title>
+<title>School Refusal Brain · 拒學/懼學文獻日報</title>
 <style>
-  :root { --bg: #070b14; --surface: #0d1525; --line: #1a2744; --text: #E8EDF5; --muted: #8899B4; --accent: #00D4AA; --accent-soft: rgba(0,212,170,0.12); }
+  :root { --bg: #070b14; --surface: #0d1525; --line: #1a2744; --text: #E8EDF5; --muted: #8899B4; --accent: #7C6BFF; --accent-soft: rgba(124,107,255,0.12); }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: -apple-system, "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; }
   .container { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding: 80px 24px; }
   .logo { font-size: 48px; text-align: center; margin-bottom: 16px; }
   h1 { text-align: center; font-size: 24px; color: #fff; margin-bottom: 8px; }
-  .subtitle { text-align: center; color: #00D4AA; font-size: 14px; margin-bottom: 48px; }
+  .subtitle { text-align: center; color: #7C6BFF; font-size: 14px; margin-bottom: 48px; }
   .count { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 32px; }
   ul { list-style: none; }
   li { margin-bottom: 8px; }
   a { color: var(--text); text-decoration: none; display: block; padding: 14px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; transition: all 0.2s; font-size: 15px; }
-  a:hover { background: rgba(0,212,170,0.05); border-color: rgba(0,212,170,0.2); transform: translateX(4px); }
-  footer { margin-top: 56px; text-align: center; font-size: 12px; color: #37474F; }
+  a:hover { background: rgba(124,107,255,0.05); border-color: rgba(124,107,255,0.2); transform: translateX(4px); }
+  .clinic-banner { margin-top: 48px; text-align: center; }
+  .clinic-link { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; background: rgba(124,107,255,0.05); border: 1px solid rgba(124,107,255,0.15); border-radius: 12px; text-decoration: none; color: var(--text); transition: all 0.2s; }
+  .clinic-link:hover { border-color: #7C6BFF; transform: translateY(-2px); }
+  footer { margin-top: 32px; text-align: center; font-size: 12px; color: #37474F; }
   footer a { display: inline; padding: 0; background: none; border: none; color: #546E7A; }
-  footer a:hover { color: #00D4AA; }
+  footer a:hover { color: #7C6BFF; }
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="logo">🧪</div>
-  <h1>GLP-1 Brain</h1>
-  <p class="subtitle">GLP-1 文獻日報 · 每日自動更新</p>
+  <div class="logo">🏫</div>
+  <h1>School Refusal Brain</h1>
+  <p class="subtitle">拒學/懼學文獻日報 · 每日自動更新</p>
   <p class="count">共 1 期日報</p>
-  <ul><li><a href="glp1-2026-04-11.html">📅 2026年4月11日（週六）</a></li>
+  <ul><li><a href="school-refusal-2026-04-11.html">📅 2026年4月11日（週六）</a></li>
 </ul>
+  <div class="clinic-banner">
+    <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+      <span>🏥</span>
+      <span>李政洋身心診所</span>
+      <span>→</span>
+    </a>
+  </div>
   <footer>
     <p>Powered by PubMed + Zhipu AI &middot; <a href="https://github.com/u8901006/school-refusal">GitHub</a></p>
   </footer>
