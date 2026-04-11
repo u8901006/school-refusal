@@ -33,24 +33,24 @@ index = f"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>School Refusal Brain \u00b7 \u62d2\u5b78/\u61fc\u5b78\u6587\u737b\u65e5\u5831</title>
 <style>
-  :root {{ --bg: #070b14; --surface: #0d1525; --line: #1a2744; --text: #E8EDF5; --muted: #8899B4; --accent: #7C6BFF; --accent-soft: rgba(124,107,255,0.12); }}
+  :root {{ --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; }}
   *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{ background: var(--bg); color: var(--text); font-family: -apple-system, "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; }}
+  body {{ background: radial-gradient(circle at top, #fff6ea 0, var(--bg) 55%, #ead8c6 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; }}
   .container {{ position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding: 80px 24px; }}
   .logo {{ font-size: 48px; text-align: center; margin-bottom: 16px; }}
-  h1 {{ text-align: center; font-size: 24px; color: #fff; margin-bottom: 8px; }}
-  .subtitle {{ text-align: center; color: #7C6BFF; font-size: 14px; margin-bottom: 48px; }}
+  h1 {{ text-align: center; font-size: 24px; color: var(--text); margin-bottom: 8px; }}
+  .subtitle {{ text-align: center; color: var(--accent); font-size: 14px; margin-bottom: 48px; }}
   .count {{ text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 32px; }}
   ul {{ list-style: none; }}
   li {{ margin-bottom: 8px; }}
-  a {{ color: var(--text); text-decoration: none; display: block; padding: 14px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; transition: all 0.2s; font-size: 15px; }}
-  a:hover {{ background: rgba(124,107,255,0.05); border-color: rgba(124,107,255,0.2); transform: translateX(4px); }}
+  a {{ color: var(--text); text-decoration: none; display: block; padding: 14px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; transition: all 0.2s; font-size: 15px; }}
+  a:hover {{ background: var(--accent-soft); border-color: var(--accent); transform: translateX(4px); }}
   .clinic-banner {{ margin-top: 48px; text-align: center; }}
-  .clinic-link {{ display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; background: rgba(124,107,255,0.05); border: 1px solid rgba(124,107,255,0.15); border-radius: 12px; text-decoration: none; color: var(--text); transition: all 0.2s; }}
-  .clinic-link:hover {{ border-color: #7C6BFF; transform: translateY(-2px); }}
-  footer {{ margin-top: 32px; text-align: center; font-size: 12px; color: #37474F; }}
-  footer a {{ display: inline; padding: 0; background: none; border: none; color: #546E7A; }}
-  footer a:hover {{ color: #7C6BFF; }}
+  .clinic-link {{ display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--text); transition: all 0.2s; }}
+  .clinic-link:hover {{ border-color: var(--accent); transform: translateY(-2px); }}
+  footer {{ margin-top: 32px; text-align: center; font-size: 12px; color: var(--muted); }}
+  footer a {{ display: inline; padding: 0; background: none; border: none; color: var(--muted); }}
+  footer a:hover {{ color: var(--accent); }}
 </style>
 </head>
 <body>
