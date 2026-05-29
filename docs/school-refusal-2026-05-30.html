@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>School Refusal Brain &middot; 拒學/懼學文獻日報 &middot; 2026年5月30日</title>
+<meta name="description" content="2026年5月30日 拒學/懼學（School Refusal）文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; --card-bg: color-mix(in srgb, var(--surface) 92%, white); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: radial-gradient(circle at top, #fff6ea 0, var(--bg) 55%, #ead8c6 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 48px; height: 48px; border-radius: 14px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(140,79,43,0.25); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: var(--accent-soft); border: 1px solid var(--line); color: var(--accent); }
+  .badge-count { background: rgba(140,79,43,0.06); border: 1px solid var(--line); color: var(--muted); }
+  .badge-source { background: transparent; color: var(--muted); font-size: 11px; padding: 0 4px; }
+  .summary-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(61,36,15,0.06); animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-soft); }
+  .news-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 22px 26px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(61,36,15,0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .news-card.featured { border-left: 3px solid var(--accent); }
+  .news-card.featured:hover { border-color: var(--accent); }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: var(--accent); color: #fff7f0; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: var(--accent-soft); border-radius: 999px; font-size: 11px; color: var(--accent); }
+  .news-card a { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #5a7a3a; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(90,122,58,0.1); border-radius: 4px; }
+  .utility-mid { color: #9f7a2e; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(159,122,46,0.1); border-radius: 4px; }
+  .utility-low { color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(118,100,83,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(255,253,249,0.8); border-radius: 14px; border: 1px solid var(--line); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff7f0; background: var(--accent); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; font-size: 12px; color: var(--accent); cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(140,79,43,0.18); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: var(--muted); width: 100px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #c47a4a); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: var(--accent); width: 24px; }
+  .clinic-banner { margin-top: 48px; animation: fadeUp 0.5s ease 0.4s both; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); }
+  .clinic-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: var(--text); flex: 1; }
+  .clinic-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .clinic-arrow { font-size: 18px; color: var(--accent); font-weight: 700; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 70px; font-size: 11px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🏫</div>
+    <div class="header-text">
+      <h1>School Refusal Brain &middot; 拒學/懼學文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年5月30日</span>
+        <span class="badge badge-count">📊 11 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + Zhipu AI</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日文獻趨勢</h2>
+    <p class="summary-text">今日文獻趨勢顯示，「拒學/曠課」不再僅是單一精神科症狀，而是與身體化症狀、家庭功能、甚至是生理健康（如月經貧窮、長新冠疲勞）交織的複雜網絡；多篇高品質研究強調了早期識別潛在風險與跨系統（如醫療與學校）合作介入的重要性。</p>
+  </div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#1</span>
+            <span class="emoji-icon">📈</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>中國青少年拒學行為的發展軌跡及影響因素</h3>
+          <p class="journal-source">BMC psychology &middot; The developmental trajectory and influencing factors of school refusal behavior among Chinese adolescents.</p>
+          <p>透過為期一年的縱向追蹤發現，青少年拒學行為可分為四種不同發展軌跡，其中「學業韌性」、「家庭功能」與「班級人際和諧」是預測拒學行為惡化或緩解的關鍵保護因子。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">1308名中國中學生</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">無（觀察性長期追蹤）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">不同拒學行為發展軌跡之比較</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">分為低減少組、高穩定組、高減少組與低增加組，且個體與環境因素能有效預測組別歸屬</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">拒學行為</span><span class="tag">家庭因素</span><span class="tag">學校因素</span><span class="tag">同儕關係</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42210286/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#2</span>
+            <span class="emoji-icon">🕸️</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>青少年曠課、憂鬱症狀與內外化問題：基於CFPS的網絡與模擬介入研究</h3>
+          <p class="journal-source">BMC psychology &middot; Adolescent school absenteeism, depressive symptoms, and internalizing/externalizing problems: a network and simulated intervention study based on CFPS.</p>
+          <p>網絡分析顯示，曠課頻率與「覺得疲憊/凡事費力」等憂鬱身體化症狀緊密相連；模擬介入指出，優先處理青少年的孤獨感與悲傷情緒，最能有效降低整體的曠課與心理困擾網絡風險。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">1894名社區青少年</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">模擬網絡介入（預期影響與橋樑症狀分析）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">不同症狀節點在網絡中的影響力</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">憂鬱症狀（如孤獨、悲傷）為核心節點，而「疲憊感」與曠課頻率具備最強的跨網絡橋樑連結</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">拒學行為</span><span class="tag">憂鬱症</span><span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42177559/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#3</span>
+            <span class="emoji-icon">🔍</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>在小兒基層醫療中識別可能暗示潛在精神健康狀況的身體化與社會問題</h3>
+          <p class="journal-source">Journal of osteopathic medicine &middot; Identifying somatic and social concerns that may suggest an underlying mental health condition in pediatric primary care.</p>
+          <p>兒童表達的身體不適與拒學行為，在基層醫療中常是潛在焦慮症的早期警訊；提升第一線醫師對這些身體化與社會線索的辨識能力，能大幅縮短從發病到確診精神疾病的時間。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">兒童與青少年</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">身體化症狀與社會行為的臨床識別</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">無（文獻回顧）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">確立身體疼痛、上學回避等問題與焦慮症、憂鬱症等精神科診斷的具體關聯</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">身體化症狀</span><span class="tag">上學回避</span><span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41195459/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#4</span>
+            <span class="emoji-icon">🤝</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>日本農村聽損兒童線上多專業合作的五年縱向分析：「岩手模式」</h3>
+          <p class="journal-source">International journal of pediatric otorhinolaryngology &middot; A five-year longitudinal analysis of discussion topics in online multidisciplinary collaboration for children with hearing loss in rural Japan.</p>
+          <p>透過長期的線上多專業團隊會議，能早期發現聽損兒童潛在的心理社會風險，將照護模式從被動治療轉為主動預防，進而減少後續的拒學與身心症狀發生。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">聽損兒童及其醫療與教育專業人員</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">線上多專業團隊合作會議 (MDC)</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">無（回顧性縱向分析）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">成功將支持焦點從早年的醫療安置，轉移到青少年的心理社會支持，預防了潛在的拒學行為</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">學校介入</span><span class="tag">身體化症狀</span><span class="tag">拒學行為</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42134030/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#5</span>
+            <span class="emoji-icon">📱</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>瑞典青少年過長螢幕時間的趨勢與行為相關性：重複橫斷面研究 (2017-2023)</h3>
+          <p class="journal-source">Addictive behaviors reports &middot; Trends and Behavioral Correlates of Excessive Screen Time Among Swedish Adolescents: A Repeated Cross-Sectional Study (2017-2023).</p>
+          <p>過長的螢幕使用時間與睡眠不足、身心症狀及學校曠課有顯著且一致的相關性，提醒臨床與教育人員需將網路使用習慣列為評估拒學問題的常規項目。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">8300名瑞典高中生</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">無（觀察性研究）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">不同螢幕使用時間與型態（遊戲、社群、影視）之比較</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">長時間螢幕使用與睡眠時間短、低身體活動、曠課及較多身心症狀有顯著正相關</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">睡眠問題</span><span class="tag">拒學行為</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41716756/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#6</span>
+            <span class="emoji-icon">🎒</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>新冠疫情期間促進上學出席率與學業成就的全面性校外介入措施</h3>
+          <p class="journal-source">Public health in practice (Oxford, England) &middot; A comprehensive outside-of-school intervention to promote school attendance and achievement during the COVID-19 pandemic.</p>
+          <p>參與高強度的課後綜合支持計畫，不僅能改善弱勢青少年的學業成績，更與校內曠課天數的顯著減少有直接相關。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">65名弱勢青少年（多為拉丁裔或非裔美國人）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">密集性校外綜合介入計畫 (Student U)</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">參與天數的多寡</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">參與計畫天數越多，校內缺席天數顯著減少，且學業測驗成績明顯進步</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">學校介入</span><span class="tag">家庭因素</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41568248/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#7</span>
+            <span class="emoji-icon">🩸</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>探討月經貧窮及其對青少年心理健康的影響</h3>
+          <p class="journal-source">Sexual health &middot; Exploring menstrual poverty and its impact on adolescent mental health.</p>
+          <p>「月經貧窮」不僅是婦科議題，更會直接導致青少年曠課，並使其發生中重度憂鬱症狀的風險增加三倍，亟需公共衛生介入。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">1241名10-19歲青少女</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">無（觀察性調查）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">有無經濟困難取得生理用品（月經貧窮）之比較</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">有月經貧窮的青少女曠課比例達8.9%，且憂鬱症狀(PHQ-9)分數顯著較高</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">憂鬱症</span><span class="tag">學校因素</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42045099/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#8</span>
+            <span class="emoji-icon">🦠</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>兒童與青少年的長新冠：布宜諾斯艾利斯 2021-2023 年的發生率與臨床特徵</h3>
+          <p class="journal-source">Archivos argentinos de pediatria &middot; Long COVID in children and adolescents: Incidence and clinical characteristics in Buenos Aires, 2021-2023.</p>
+          <p>兒童感染COVID-19後約有7.8%出現長新冠，最常見的症狀為「嚴重疲勞」，這成為導致青少年長期缺課與上學功能受損的關鍵身體因素。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">475名5-18歲確診COVID-19的兒少</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">疫苗接種狀態分析</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">完整接種疫苗者與未接種/部分接種者之比較</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">未接種疫苗者鎘長新冠發生率較高；疲勞是導致長期缺課的最主要症狀</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">身體化症狀</span><span class="tag">睡眠問題</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41870982/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div></div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🩺</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>孟加拉庫爾納專區學齡兒童疥瘡盛行率及相關因素：學校與伊斯蘭學校之比較</h3>
+          <p class="journal-source">BMJ paediatrics open</p>
+          <p>資源匱乏地區的學童罹患疥瘡比例極高，這常是導致學童身體不適、社會污名化與曠課的物理性因素。</p>
+          <div class="card-footer">
+            <span class="tag">學校因素</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42173555/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🦷</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>在沙烏地阿拉伯幼兒園與小學引入永久駐點牙科保健員以應對兒童高齲齒負擔</h3>
+          <p class="journal-source">The Journal of school health</p>
+          <p>理論性文章建議在學校常規配置牙科保健員，以解決因嚴重齲齒疼痛導致的兒童長期缺課問題。</p>
+          <div class="card-footer">
+            <span class="tag">學校介入</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42070094/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🫁</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>在亞利桑那州馬里科帕縣輕鬆呼吸：透過新型護理師教練模式賦能 K-12 學校，促進全縣學校備用沙丁胺醇吸入器計畫</h3>
+          <p class="journal-source">The Journal of school nursing : the official publication of the National Association of School Nurses</p>
+          <p>透過公共衛生與學校護理師的合作，推動校內備用吸入器計畫，有效減少因氣喘急性發作導致的學生缺課。</p>
+          <div class="card-footer">
+            <span class="tag">學校介入</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/39850998/" target="_blank">PubMed →</a>
+          </div>
+        </div></div>
+
+  <div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>
+            <div class="topic-row">
+              <span class="topic-name">拒學行為</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">5</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">憂鬱症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:60%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">身體化症狀</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:60%"></div></div>
+              <span class="topic-count">3</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">學校介入</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:80%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">兒少精神醫學</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:40%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">家庭因素</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:40%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">睡眠問題</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:40%"></div></div>
+              <span class="topic-count">2</span>
+            </div></div>
+
+  <div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'><span class="keyword">拒學行為</span><span class="keyword">曠課</span><span class="keyword">發展軌跡</span><span class="keyword">網絡分析</span><span class="keyword">身體化症狀</span><span class="keyword">多專業合作</span><span class="keyword">月經貧窮</span><span class="keyword">螢幕時間</span></div></div>
+
+  <div class="clinic-banner">
+    <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+      <span class="clinic-icon">🏥</span>
+      <div>
+        <div class="clinic-name">李政洋身心診所首頁</div>
+        <div class="clinic-desc">www.leepsyclinic.com</div>
+      </div>
+      <span class="clinic-arrow">→</span>
+    </a>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed &middot; 分析模型：glm-5.1</span>
+    <span><a href="https://github.com/u8901006/school-refusal">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
