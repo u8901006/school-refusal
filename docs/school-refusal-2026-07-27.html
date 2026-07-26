@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>School Refusal Brain &middot; 拒學/懼學文獻日報 &middot; 2026年7月27日</title>
+<meta name="description" content="2026年7月27日 拒學/懼學（School Refusal）文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #f6f1e8; --surface: #fffaf2; --line: #d8c5ab; --text: #2b2118; --muted: #766453; --accent: #8c4f2b; --accent-soft: #ead2bf; --card-bg: color-mix(in srgb, var(--surface) 92%, white); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: radial-gradient(circle at top, #fff6ea 0, var(--bg) 55%, #ead8c6 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 48px; height: 48px; border-radius: 14px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(140,79,43,0.25); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: var(--accent-soft); border: 1px solid var(--line); color: var(--accent); }
+  .badge-count { background: rgba(140,79,43,0.06); border: 1px solid var(--line); color: var(--muted); }
+  .badge-source { background: transparent; color: var(--muted); font-size: 11px; padding: 0 4px; }
+  .summary-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(61,36,15,0.06); animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-soft); }
+  .news-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 22px 26px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(61,36,15,0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .news-card.featured { border-left: 3px solid var(--accent); }
+  .news-card.featured:hover { border-color: var(--accent); }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: var(--accent); color: #fff7f0; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: var(--accent-soft); border-radius: 999px; font-size: 11px; color: var(--accent); }
+  .news-card a { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #5a7a3a; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(90,122,58,0.1); border-radius: 4px; }
+  .utility-mid { color: #9f7a2e; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(159,122,46,0.1); border-radius: 4px; }
+  .utility-low { color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(118,100,83,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(255,253,249,0.8); border-radius: 14px; border: 1px solid var(--line); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff7f0; background: var(--accent); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; font-size: 12px; color: var(--accent); cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(140,79,43,0.18); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: var(--muted); width: 100px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #c47a4a); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: var(--accent); width: 24px; }
+  .clinic-banner { margin-top: 48px; animation: fadeUp 0.5s ease 0.4s both; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(61,36,15,0.04); }
+  .clinic-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,36,15,0.08); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: var(--text); flex: 1; }
+  .clinic-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .clinic-arrow { font-size: 18px; color: var(--accent); font-weight: 700; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 70px; font-size: 11px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">🏫</div>
+    <div class="header-text">
+      <h1>School Refusal Brain &middot; 拒學/懼學文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年7月27日</span>
+        <span class="badge badge-count">📊 12 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + Zhipu AI</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日文獻趨勢</h2>
+    <p class="summary-text">今日文獻亮點集中在「介入措施」面向：雙軌家長-青少年團體CBT顯著提升憂鬱合併拒學青少年的返校率（16.7%→66.7%），校護主導的CALM焦慮介入有效改善上學回避與工作記憶，而發展性書寫障礙整合回顧提醒臨床人員將書寫篩查納入拒學評估常規——三者皆具高度臨床轉譯價值。</p>
+  </div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#1</span>
+            <span class="emoji-icon">🎓</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>雙軌團體認知行為治療對合併憂鬱與拒學中國青少年的療效及親子知覺偏差之影響：非隨機對照試驗</h3>
+          <p class="journal-source">Asian journal of psychiatry &middot; Efficacy of dual-track group CBT on emotion-related school attendance challenges and parent-adolescent perceptual bias among Chinese adolescents with depression: A non-randomized controlled trial.</p>
+          <p>雙軌GCBT（青少年線下＋家長線上同步進行）8週介入後，返校率從16.7%躍升至66.7%，顯著優於常規治療組的50.0%，且親子知覺偏差每週平均下降3.2分，為華語地區首個具實證基礎的拒學雙軌家庭介入模式。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">71名合併憂鬱症與情緒相關上學困難（拒學）的中國青少年（GCBT組39人，TAU組32人）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">8週雙軌家長-青少年團體認知行為治療（青少年線下實體＋家長線上同步會談）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">常規治療（Treatment as Usual, TAU）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">第8週家庭報告返校率：GCBT組16.7%→66.7% vs TAU組46.9%→50.0%（GEE交互作用 β=2.06, P=.001）；家長報告SDQ總困難與情緒症狀顯著改善（FDR校正後 P=.002及.003）；親子知覺偏差平均每週下降3.2分（P=.02）</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">拒學行為</span><span class="tag">憂鬱症</span><span class="tag">認知行為治療</span><span class="tag">家庭治療</span><span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42341377/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#2</span>
+            <span class="emoji-icon">🏫</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>校護主導之CALM焦慮介入方案對國小學生學校成果的影響</h3>
+          <p class="journal-source">The Journal of school nursing &middot; Impact of the Child Anxiety Learning Modules (CALM), a School Nurse-Delivered Intervention for Anxiety, on Elementary Students' School Outcomes.</p>
+          <p>由校護執行的簡短焦慮介入模組（CALM）顯著改善學齡兒童的上學焦慮、焦慮對學業表現的影響及負向課堂行為，並提升工作記憶，證明非精神專業人員在校園端即可有效降低上學回避。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">54名5-12歲具有焦慮症狀的小學生及30名校護（CALM組14名校護，CALM-R組16名校護）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">CALM（兒童焦慮學習模組）完整版——由校護在學校執行的簡短焦慮介入</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">CALM-R（僅放鬆訓練成分）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">兩組均顯著降低上學焦慮、減少焦慮對學校任務執行的影響、減少負向課堂行為，並改善工作記憶；家長、教師及學生自評三方一致呈現改善趨勢</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">上學回避</span><span class="tag">學校介入</span><span class="tag">心理治療</span><span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/40131025/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#3</span>
+            <span class="emoji-icon">✍️</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>發展性書寫障礙在兒少精神護理中的整合性回顧：臨床意涵與篩查建議</h3>
+          <p class="journal-source">Journal of child and adolescent psychiatric nursing &middot; Developmental Dysgraphia in Child and Adolescent Psychiatric-Mental Health Nursing: An Integrative Review.</p>
+          <p>書寫障礙影響5-20%學齡兒童，在ADHD/自閉症族群中更高達59%，且常以焦慮、憂鬱、拒學及行為問題為表現形式呈現於精神轉介中，建議將書寫篩查常規納入兒少精神評估。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">2000年1月至2026年3月發表的多學科教據（8個資料庫，初篩6308篇，最終56篇納入統合）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">整合性文獻回顧（Whittemore & Knafl方法，PRISMA 2020報告規範）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">N/A（系統性回顧研究）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">書寫障礙與拒學、焦慮、憂鬱、行為困擾顯著相關；超過37%學習障礙兒童達情緒/ADHD臨床閾值；僅3篇護理文獻探討此議題且無原始研究</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">系統性回顧</span><span class="tag">拒學行為</span><span class="tag">ADHD</span><span class="tag">自閉症</span><span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42470314/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#4</span>
+            <span class="emoji-icon">🧩</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>自閉症兒童診斷前後之生活品質與社會成本比較：探索性研究</h3>
+          <p class="journal-source">Journal of autism and developmental disorders &middot; Quality of Life and Societal Cost in Autistic Children: An Exploratory Comparative Study Pre- and Post-Diagnosis.</p>
+          <p>自閉症診斷確立後，兒童生活品質分數從0.58提升至0.66，日常活動困難顯著減少，且學校缺席呈下降趨勢，同時整體年度社會成本從€6513降至€5060，凸顯及時診斷對改善學校參與的關鍵角色。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">36名2-10歲臨床轉介的荷蘭自閉症兒童</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">自閉症診斷確立及其後的介入與服務資源連結</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">診斷前 vs 診斷後（自身對照）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">生活品質從0.58→0.66（EQ-5D-3L，未達顯著）；日常活動問題顯著減少；學校缺席呈下降趨勢；總年度成本從€6513→€5060（未達顯著）；醫療成本減半，從身體醫療轉向心理醫療</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">自閉症</span><span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/40057931/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#5</span>
+            <span class="emoji-icon">🩺</span>
+            <span class="utility-low">低实用性</span>
+          </div>
+          <h3>接受腹膜透析兒童之生活經驗：描述性現象學研究</h3>
+          <p class="journal-source">Journal of renal care &middot; Experiences of Children Undergoing Peritoneal Dialysis: A Descriptive Phenomenological Study.</p>
+          <p>腹膜透析兒童面臨顯著的情緒、身體與社會負擔，社交孤立、學校缺席及同儕關係中斷為核心主題，提醒臨床在處理慢性病相關缺席時需整合身心與社會支持。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">10名7歲以上、接受腹膜透析至少1年的慢性腎病兒童（土耳其南部醫學中心）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">描述性現象學設計（半結構式深度訪談，Colaizzi七步分析法）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">N/A（質性研究）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">五大主題：腹膜透析的情緒反應、身體負擔、社會與學校生活中斷、家庭關係變化、因應與社會支持；兒童最常報告恐懼、悲傷、壓力及社交孤立</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">身體化症狀</span><span class="tag">同儕關係</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42405835/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div></div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🎓</span>
+            <span class="utility-high utility-sm">高</span>
+          </div>
+          <h3>雙軌團體認知行為治療對合併憂鬱與拒學中國青少年的療效及親子知覺偏差之影響：非隨機對照試驗</h3>
+          <p class="journal-source">Asian journal of psychiatry</p>
+          <p>雙軌GCBT（青少年線下＋家長線上）8週介入後返校率從16.7%升至66.7%，顯著優於常規治療，親子知覺偏差每週下降3.2分。</p>
+          <div class="card-footer">
+            <span class="tag">拒學行為</span><span class="tag">憂鬱症</span><span class="tag">認知行為治療</span><span class="tag">家庭治療</span><span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42341377/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🏫</span>
+            <span class="utility-high utility-sm">高</span>
+          </div>
+          <h3>校護主導之CALM焦慮介入方案對國小學生學校成果的影響</h3>
+          <p class="journal-source">The Journal of school nursing</p>
+          <p>校護執行的CALM焦慮介入模組顯著改善學齡兒童的上學焦慮、課堂行為及工作記憶，證明非精神專業人員也能在學校端有效降低上學回避。</p>
+          <div class="card-footer">
+            <span class="tag">上學回避</span><span class="tag">學校介入</span><span class="tag">心理治療</span><span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/40131025/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">✍️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>發展性書寫障礙在兒少精神護理中的整合性回顧：臨床意涵與篩查建議</h3>
+          <p class="journal-source">Journal of child and adolescent psychiatric nursing</p>
+          <p>書寫障礙影響5-20%學齡兒童且在ADHD/自閉症中達59%，常以焦慮、憂鬱、拒學為行為表現，建議將書寫篩查納入精神評估常規。</p>
+          <div class="card-footer">
+            <span class="tag">系統性回顧</span><span class="tag">拒學行為</span><span class="tag">ADHD</span><span class="tag">自閉症</span><span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42470314/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🧩</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>自閉症兒童診斷前後之生活品質與社會成本比較：探索性研究</h3>
+          <p class="journal-source">Journal of autism and developmental disorders</p>
+          <p>自閉症診斷後兒童生活品質提升、日常活動困難減少、學校缺席呈下降趨勢，且整體社會成本降低，凸顯及時診斷的重要性。</p>
+          <div class="card-footer">
+            <span class="tag">自閉症</span><span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/40057931/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🩺</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>接受腹膜透析兒童之生活經驗：描述性現象學研究</h3>
+          <p class="journal-source">Journal of renal care</p>
+          <p>腹膜透析兒童經歷顯著情緒、身體與社會負擔，社交孤立與學校缺席為核心議題，需整合身心與社會支持。</p>
+          <div class="card-footer">
+            <span class="tag">身體化症狀</span><span class="tag">同儕關係</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42405835/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">💕</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>先天性心臟病青少年的月經健康</h3>
+          <p class="journal-source">Journal of clinical research in pediatric endocrinology</p>
+          <p>先天性心臟病青少年的月經特徵與健康對照組相近，但對月經症狀的感知與耐受度可能不同；對照組因痛經導致的學校缺席反而更高。</p>
+          <div class="card-footer">
+            <span class="tag">身體化症狀</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42483948/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🦠</span>
+            <span class="utility-low utility-sm">低</span>
+          </div>
+          <h3>日本幼兒園合作監測協會與傳染病發生率</h3>
+          <p class="journal-source">International journal of infectious diseases : IJID</p>
+          <p>幼兒園缺席監測系統（NSASSy）能緩解社區流感爆發對幼兒園的影響，並降低所有症狀的發生率，但與精神科拒學議題關聯度低。</p>
+          <div class="card-footer">
+            <span class="tag">兒少精神醫學</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42069329/" target="_blank">PubMed →</a>
+          </div>
+        </div></div>
+
+  <div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>
+            <div class="topic-row">
+              <span class="topic-name">拒學行為</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:50%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">上學回避</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">憂鬱症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">認知行為治療</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">家庭治療</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">學校介入</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">系統性回顧</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">自閉症</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:50%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">ADHD</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">兒少精神醫學</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">4</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">身體化症狀</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:50%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">同儕關係</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">心理治療</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:25%"></div></div>
+              <span class="topic-count">1</span>
+            </div></div>
+
+  <div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'><span class="keyword">拒學行為</span><span class="keyword">雙軌團體CBT</span><span class="keyword">親子知覺偏差</span><span class="keyword">上學回避</span><span class="keyword">校護介入</span><span class="keyword">CALM</span><span class="keyword">發展性書寫障礙</span><span class="keyword">自閉症診斷</span><span class="keyword">學校缺席</span><span class="keyword">慢性病兒童</span><span class="keyword">社交孤立</span></div></div>
+
+  <div class="clinic-banner">
+    <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+      <span class="clinic-icon">🏥</span>
+      <div>
+        <div class="clinic-name">李政洋身心診所首頁</div>
+        <div class="clinic-desc">www.leepsyclinic.com</div>
+      </div>
+      <span class="clinic-arrow">→</span>
+    </a>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed &middot; 分析模型：glm-5.1</span>
+    <span><a href="https://github.com/u8901006/school-refusal">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
