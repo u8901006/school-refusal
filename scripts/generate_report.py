@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate School Refusal daily report HTML using Zhipu AI (coding plan GLM-5.1).
+Generate School Refusal daily report HTML using NVIDIA AI.
 Reads papers JSON, analyzes with AI, generates styled HTML page.
 """
 
@@ -14,9 +14,9 @@ from datetime import datetime, timezone, timedelta
 import httpx
 
 API_BASE = os.environ.get(
-    "ZHIPU_API_BASE", "https://open.bigmodel.cn/api/coding/paas/v4"
+    "NVIDIA_API_BASE", "https://integrate.api.nvidia.com/v1"
 )
-MODEL_NAME = os.environ.get("ZHIPU_MODEL", "glm-5.1")
+MODEL_NAME = os.environ.get("NVIDIA_MODEL", "nvidia/nemotron-3-super-120b-a12b")
 
 SYSTEM_PROMPT = (
     "你是兒童青少年精神醫學領域的資深研究員，專精於「拒學/懼學（school refusal）」研究。你的任務是：\n"
@@ -114,12 +114,14 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": prompt},
         ],
-        "temperature": 0.3,
-        "top_p": 0.9,
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "stream": False,
+        "chat_template_kwargs": {"enable_thinking": False},
         "max_tokens": 8192,
     }
 
-    models_to_try = [MODEL_NAME, "glm-4-flash", "glm-4"]
+    models_to_try = [MODEL_NAME, "nvidia/nemotron-3-nano-30b-a3b"]
 
     for model in models_to_try:
         payload["model"] = model
@@ -223,7 +225,7 @@ def generate_html(analysis: dict) -> str:
         <div class="news-card featured">
           <div class="card-header">
             <span class="rank-badge">#{pick.get("rank", "")}</span>
-            <span class="emoji-icon">{pick.get("emoji", "\U0001f4c4")}</span>
+            <span class="emoji-icon">{pick.get("emoji", "📄")}</span>
             <span class="{utility_class}">{util}\u5b9e\u7528\u6027</span>
           </div>
           <h3>{pick.get("title_zh", pick.get("title_en", ""))}</h3>
@@ -250,7 +252,7 @@ def generate_html(analysis: dict) -> str:
         all_papers_html += f"""
         <div class="news-card">
           <div class="card-header-row">
-            <span class="emoji-sm">{paper.get("emoji", "\U0001f4c4")}</span>
+            <span class="emoji-sm">{paper.get("emoji", "📄")}</span>
             <span class="{utility_class} utility-sm">{util}</span>
           </div>
           <h3>{paper.get("title_zh", paper.get("title_en", ""))}</h3>
@@ -361,7 +363,7 @@ def generate_html(analysis: dict) -> str:
       <div class="header-meta">
         <span class="badge badge-date">\U0001f4c5 {date_display}</span>
         <span class="badge badge-count">\U0001f4ca {total_count} \u7bc7\u6587\u737b</span>
-        <span class="badge badge-source">Powered by PubMed + Zhipu AI</span>
+        <span class="badge badge-source">Powered by PubMed + NVIDIA AI</span>
       </div>
     </div>
   </header>
@@ -371,13 +373,13 @@ def generate_html(analysis: dict) -> str:
     <p class="summary-text">{summary}</p>
   </div>
 
-  {"<div class='section'><div class='section-title'><span class='section-icon'>\u2b50</span>\u4eca\u65e5\u7cbe\u9078 TOP Picks</div>" + top_picks_html + "</div>" if top_picks_html else ""}
+  {"<div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>" + top_picks_html + "</div>" if top_picks_html else ""}
 
-  {"<div class='section'><div class='section-title'><span class='section-icon'>\U0001f4da</span>\u5176\u4ed6\u503c\u5f97\u95dc\u6ce8\u7684\u6587\u737b</div>" + all_papers_html + "</div>" if all_papers_html else ""}
+  {"<div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>" + all_papers_html + "</div>" if all_papers_html else ""}
 
-  {"<div class='topic-section section'><div class='section-title'><span class='section-icon'>\U0001f4ca</span>\u4e3b\u984c\u5206\u4f48</div>" + topic_bars_html + "</div>" if topic_bars_html else ""}
+  {"<div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>" + topic_bars_html + "</div>" if topic_bars_html else ""}
 
-  {"<div class='keywords-section section'><div class='section-title'><span class='section-icon'>\U0001f3f7\ufe0f</span>\u95dc\u9375\u5b57</div><div class='keywords'>" + keywords_html + "</div></div>" if keywords_html else ""}
+  {"<div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'>" + keywords_html + "</div></div>" if keywords_html else ""}
 
   <div class="clinic-banner">
     <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
@@ -408,13 +410,13 @@ def main():
     parser.add_argument("--input", required=True, help="Input papers JSON file")
     parser.add_argument("--output", required=True, help="Output HTML file")
     parser.add_argument(
-        "--api-key", default=os.environ.get("ZHIPU_API_KEY", ""), help="Zhipu API key"
+        "--api-key", default=os.environ.get("NVIDIA_API_KEY", ""), help="NVIDIA API key"
     )
     args = parser.parse_args()
 
     if not args.api_key:
         print(
-            "[ERROR] No API key provided. Set ZHIPU_API_KEY env var or use --api-key",
+            "[ERROR] No API key provided. Set NVIDIA_API_KEY env var or use --api-key",
             file=sys.stderr,
         )
         sys.exit(1)
