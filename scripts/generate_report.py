@@ -16,7 +16,7 @@ import httpx
 API_BASE = os.environ.get(
     "NVIDIA_API_BASE", "https://integrate.api.nvidia.com/v1"
 )
-MODEL_NAME = os.environ.get("NVIDIA_MODEL", "nvidia/nemotron-3-super-120b-a12b")
+MODEL_NAME = os.environ.get("NVIDIA_MODEL", "nvidia/nemotron-3-ultra-550b-a55b")
 
 SYSTEM_PROMPT = (
     "你是兒童青少年精神醫學領域的資深研究員，專精於「拒學/懼學（school refusal）」研究。你的任務是：\n"
@@ -121,7 +121,7 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
         "max_tokens": 8192,
     }
 
-    models_to_try = [MODEL_NAME, "nvidia/nemotron-3-nano-30b-a3b"]
+    models_to_try = [MODEL_NAME, "nvidia/nemotron-3-ultra-550b-a55b"]
 
     for model in models_to_try:
         payload["model"] = model
